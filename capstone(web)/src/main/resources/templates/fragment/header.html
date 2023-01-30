@@ -1,0 +1,63 @@
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!--headerFragment 선언-->
+<div th:fragment="headerFragment">
+
+  <div class="top1"><!-- 헤드부분 -->
+
+    <header  class="p-3 text-bg-dark" style="background:linear-gradient( 45deg,rgb(44 141 164),rgb(136 194 222))!important">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" >
+
+            <li><a href="#" class="nav-link px-2 text-secondary">
+                    <span>
+                    <script>
+                       date = new Date().toLocaleDateString();
+                       document.write(date);
+                    </script>
+                    </span>
+            </a>
+
+            </li><!-- 우리 프로필 링크 -->
+            <li><a href="#" class="nav-link px-2 text-white"><img id="png_carrick" src="/image/eojin.png" width="30px" height="30px"> 어진</a></li>
+            <li><a href="#" class="nav-link px-2 text-white"><img id="png_carrick" src="/image/성민 (1).png" width="30px" height="30px"> 성민</img></a></li>
+            <li><a href="#" class="nav-link px-2 text-white"><img id="png_carrick" src="/image/현즈 (1).png" width="30px" height="30px"> 현주</img></a></li>
+            <li><a href="#" class="nav-link px-2 text-white"><img id="png_carrick" src="/image/si.png" width="30px" height="30px"> 시원</img></a></li>
+          </ul>
+
+          <div class="ikons"><!-- 오른쪽위에 사이트 링크 -->
+            <a id="rightbanner" th:href="@{/main}" ><img src="/image/main_text.png" width="80px"height="25px"> </a>
+            <a id="rightbanner" href="https://www.youtube.com/channel/UCgooCktW36RJwqf0bZpEX_g" ><img src="/image/youtube.png" width="25px"height="25px"> </a>
+            <a  id="rightbanner" href="https://instagram.com/dsu_contents?igshid=Zjc2ZTc4Nzk=" ><img src="/image/잉스타 (1).png" width="25px"height="25px"></a>
+            <a  id="rightbannerfinal" href="https://dc.dsu.ac.kr/dc/" ><img src="/image/dsu.png" width="25px"height="25px"></a>
+
+
+          </div>
+
+
+          <div class="text-end"><!-- 로그아웃과 회원정보수정 -->
+            <button type="button" class="btn btn-close-white"><a th:href="@{/user/logout}">로그아웃</a></button>
+            <button type="button" class="btn btn-close-white">회원정보수정</button>
+          </div>
+        </div>
+        <th:block layout:fragment="head"></th:block>
+      </div>
+
+    </header>
+  </div>
+
+
+    <div class="top2"><!-- 커뮤니티 창 라인 -->
+
+      <a id ="main_1" th:href="@{/board/list/0}" >전체 커뮤니티</a>
+      <a id ="main_1" th:href="@{/board/list/3}" >프로젝트</a>
+      <a id ="main_1" th:href="@{/board/list/1}">랩실</a>  <!--     여기 이름 바꿈 아이디도 메인1 로 통일  -->
+      <a id ="main_1" th:href="@{/board/list/2}" >학생회</a>
+    </div>
+
+</html>

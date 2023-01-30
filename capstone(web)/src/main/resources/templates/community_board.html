@@ -1,0 +1,92 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+  <head>
+    <title th:if="${type} == 0">전체 게시판</title>
+    <title th:if="${type} == 1">랩실 게시판</title>
+    <title th:if="${type} == 2">학생회 게시판</title>
+  </head>
+  <body>
+  <th:block layout:fragment="content">
+    <div class="board_body">
+      <div class="all_board">
+      <p id="p1" th:if="${type} == 0">전체 커뮤니티</p>
+        <p id="p1" th:if="${type} == 1">랩실 커뮤니티</p>
+        <p id="p1" th:if="${type} == 2">학생회 커뮤니티</p>
+      <a id="p2" th:if="${type} == 0" th:href="@{/board/create/0}"> 글쓰기 </a>
+        <a id="p2" th:if="${type} == 1" th:href="@{/board/create/1}"> 글쓰기 </a>
+        <a id="p2" th:if="${type} == 2" th:href="@{/board/create/2}"> 글쓰기 </a>
+
+      <hr>
+
+      <nav class="navbar navbar-default">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="">메인</a></li>
+            <li class="active"><a href="">게시판</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+            <thead>
+              <tr>
+                <th style="background-color: #eeeeee; text-align: center;">번호</th>
+                <th style="background-color: #eeeeee; text-align: center;">제목</th>
+                <th style="background-color: #eeeeee; text-align: center;">작성자</th>
+                <th style="background-color: #eeeeee; text-align: center;">작성일</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board, loop : ${paging}">
+              <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+                <td>
+                  <a th:href="@{|/board/detail/${board.id}|}" th:text="${board.subject}"></a>
+                  <span id="numbering" th:if="${#lists.size(board.answerList) > 0}"
+                        th:text="${#lists.size(board.answerList)}"></span>
+                </td>
+              <td th:if="${board.author != null}" th:text="${board.author.username}"></td>
+              <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br>
+      <!--다음 페이지 넘김번호 -->
+      <nav id="board_nav" aria-label="Page navigation example" style="margin-left: 40%;margin-right: 40%;">
+        <div th:if="${!paging.isEmpty()}">
+          <ul class="pagination">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+              <a class="page-link"
+                 th:href="@{|?page=${paging.number-1}|}">
+                <span>이전</span>
+              </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:if="${page >= paging.number-9 and page <= paging.number+9}"
+                th:classappend="${page == paging.number} ? 'active'"
+                class="page-item">
+              <a th:text="${page+1}" class="page-link" th:href="@{|?page=${page}|}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+              <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                <span>다음</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+     
+     
+
+    </div>
+    
+     
+   
+    </div>
+  </th:block>
+  </body>
+</html>

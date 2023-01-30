@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko"
+      class="login_html"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="utf-8">
+        <title>딩굴 로그인 페이지</title>
+        <link href="../css/main.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <th:block layout:fragment="script">
+        <script>
+
+          // 로그인창 다른곳으로 넘어가기전에 포커스 id부분으로 이동 --추가
+          function back(){
+
+              document.getElementById("floatingInput").focus();
+              alert("로그인후 이용 가능합니다.")
+
+          }
+
+        </script>
+        </th:block>
+            
+    </head>
+
+        
+    
+    
+    
+    <body class="login_body">
+        <div class="login_login">
+
+            <div class="login_next" sec:authorize="isAuthenticated()">
+                <img id="login_next_img" src="/image/main_text.png" width="205px" height="130px">
+                <h5 th:text="${name}+'님 환영합니다.'"> xxx님 환영합니다.</h5>
+            </div>
+
+            <form th:action="@{/user/login}" method="post" sec:authorize="isAnonymous()">
+
+                <div class="form-floating" style="margin-bottom: 1%;">
+                  <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name">
+                  <label>ID</label>
+                </div>
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                  <label>Password</label>
+                </div>
+                <div th:if="${param.error}">
+                    <div class="error">
+                        사용자ID 또는 비밀번호를 확인해 주세요.
+                    </div>
+                </div>
+                <div class="checkbox mb-3">
+                 
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" style="background-color: rgb(168, 168, 168);border: gray;">Sign in</button>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+              </form>
+        </div> 
+        <div class="login_side" sec:authorize="isAnonymous()">
+            <a id="side"><img id="login_img" src="/image/board.png"width="90%"height="15%" onclick="back()"></a>
+            <a id="side"><img id="login_img" src="/image/home.png"width="90%"height="13%" onclick="back()"> </a>
+            <a id="side"><img id="login_img" src="/image/project.png"width="90%"height="15%" onclick="back()"></a>
+        </div>
+
+        <div class="login_side" sec:authorize="isAuthenticated()">
+            <a id="side" th:href="@{/board/list/0}"><img id="login_img" src="/image/board.png"width="90%"height="15%"></a>
+            <a id="side" th:href="@{/main}"><img id="login_img" src="/image/home.png"width="90%"height="13%"> </a>
+            <a id="side" th:href="@{/board/list/3}"><img id="login_img" src="/image/project.png"width="90%"height="15%"></a>
+        </div>
+
+    </body>
+</html>

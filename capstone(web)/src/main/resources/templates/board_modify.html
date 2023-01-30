@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>글 내용 수정</h2><br>
+    <h4 th:text="'제목 : ' + ${board.subject}"></h4>
+    <form th:action th:object="${boardModifyForm}" method="post">
+        <div role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+
+        <textarea id="content" name="content" th:field="*{content}" th:value="${board.content}" th:text="${board.content}"></textarea>
+
+        <input type="submit" value="작성완료">
+        <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+    </form>
+</body>
+</html>

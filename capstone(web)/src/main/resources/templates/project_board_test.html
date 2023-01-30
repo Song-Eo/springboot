@@ -1,0 +1,114 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+  <title>프로젝트 게시판</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+  <img id="pin_img" src="/image/pin.png" width="500px" height="100px">
+  <div class="project_board1">
+
+    <div class="project_board2" th:each="board, loop : ${paging}">
+      <div class="project_board_small" th:if="${loop.count == 1}">
+        <img id="project_board_img" src="/image/image3.png"  width="100%" height="100%">
+
+
+        <div class="write_div">
+          <h6 id="project_type" th:text="${board.field}">영상</h6><br>
+          <a th:href="@{|/board/detail/${board.id}|}"><h5 id="project_title" th:text="${board.subject}">안녕</h5></a><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div>
+      <div class="project_board_small" th:if="${loop.count == 2}">
+        <img id="project_board_img" src="/image/image4.png"  width="100%" height="100%">
+
+
+        <div class="write_div" >
+          <h6 id="project_type" th:text="${board.field}" style="bottom: 20px; margin-right: 17px;">영상</h6><br>
+          <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div>
+      <div class="project_board_small" th:if="${loop.count == 3}">
+        <img id="project_board_img" src="/image/image5.png"  width="100%" height="100%">
+
+
+        <div class="write_div">
+          <h6 id="project_type" th:text="${board.field}" style="bottom: 20px; margin-right: 17px;">영상</h6><br>
+          <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div>
+      <div class="project_board_small" th:if="${loop.count == 4}">
+        <img id="project_board_img" src="/image/image6.png"  width="100%" height="100%">
+
+
+        <div class="write_div">
+          <h6 id="project_type" th:text="${board.field}" style="bottom: 20px; margin-right: 17px;">영상</h6><br>
+          <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div>
+      <div class="project_board_small1" th:if="${loop.count == 5}">
+        <img id="project_board_img" src="/image/image7.png"  width="100%" height="100%">
+
+
+        <div class="write_div">
+          <h6 id="project_type" th:text="${board.field}" style="bottom: 20px; margin-right: 17px;">영상</h6><br>
+          <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div>
+      <div class="project_board_small1" th:if="${loop.count == 6}">
+        <img id="project_board_img" src="/image/image8.png"  width="100%" height="100%">
+
+
+        <div class="write_div">
+          <h6 id="project_type" th:text="${board.field}" >영상</h6><br>
+          <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div>
+      <div class="project_board_small1" th:if="${loop.count == 7}">
+        <img id="project_board_img" src="/image/image3.png"  width="100%" height="100%">
+
+
+        <div class="write_div">
+          <h6 id="project_type" th:text="${board.field}">영상</h6><br>
+          <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+          <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+        </div>
+      </div><div class="project_board_small1" th:if="${loop.count == 8}">
+      <img id="project_board_img" src="/image/image3.png"  width="100%" height="100%">
+
+
+      <div class="write_div">
+        <h6 id="project_type" th:text="${board.field}">영상</h6><br>
+        <h5 id="project_title" th:text="${board.subject}">안녕</h5><br>
+        <h6 id="write_name" th:text="${board.author.username}">임성민</h6>
+      </div>
+    </div>
+
+
+    </div>
+
+    <div class="projrect_button">
+      <input id="projrect_button1" type="button" value="1" >
+      <input id="projrect_button1" type="button" value="2">
+      <input id="projrect_button1" type="button" value="3">
+      <input id="projrect_button1" type="button" value="4">
+      <input id="projrect_button1" type="button" value="5">
+    </div>
+
+  </div>
+
+</th:block>
+<th:block layout:fragment="ringring">
+  <img id="img_13" src="/image/image13.png"width=200px height="200px">
+  <img id="img_14" src="/image/image14.png"width=200px height="200px">
+</th:block>
+</body>
+
+</html>

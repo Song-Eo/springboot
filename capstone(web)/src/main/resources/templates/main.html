@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}">
+
+    <head>
+        <title>딩굴 메인 홈페이지</title>
+    </head>
+
+    <body>
+    <th:block layout:fragment="head"><!-- 딩굴 이미지 -->
+        <div class="main_name"><img src="image/main_text.png" width=250px height="80px"></div></th:block>
+    <th:block layout:fragment="content">
+        <br>
+        <div class="screen"><!-- 스크린 영역 -->
+            <a href="#"><img id="screen_img" src="image/빌딩.jpg" ></img></a>
+        </div>
+
+        <div class="box1">
+            <ul>
+                <li id="box_list"><a href="#">인기글</a></li>
+            </ul>
+            <br>
+            <hr id="hr1">
+            <table id="box_tb">
+                <tr th:each="popul, ploop : ${popular}" th:if="${ploop.index < 4}">
+                    <th id="box_th"><a id="iddesu" th:href="@{|/board/detail/${popul.id}|}" th:text="${popul.author.username}"> 최신 제목 </a></th>
+                    <td id="box_td"><a id="box_td_text" th:href="@{|/board/detail/${popul.id}|}" th:text="${popul.subject}"> 최신 내용 </a></td>
+                    <td id="box_td_img"><img id="img_good" src="/image/good.png" width="20px" height="20px" >
+                </tr>
+            </table>
+            <br>
+        </div>
+
+        <div class="box2" >
+            <ul>
+                <li id="box_list"><a href="#">최신글</a></li>
+            </ul>
+            <br>
+            <hr id="hr1">
+            <table id="box_tb">
+                <tr th:each="recent, rloop : ${recents}" th:if="${rloop.index < 4}">
+                    <th id="box_th"><a id="iddesu" th:href="@{|/board/detail/${recent.id}|}" th:text="${recent.author.username}"> 최신 제목 </a></th>
+                    <td id="box_td"><a id="box_td_text" th:href="@{|/board/detail/${recent.id}|}" th:text="${recent.subject}"> 최신 내용 </a></td>
+                    <td id="box_td_img"><img id="img_good" src="/image/new.png" width="20px" height="20px" >
+                </tr>
+            </table>
+            <br>
+        </div>
+
+        <div class="box3">
+            <ul >
+                <li id="box_list"><a href="#">갤러리</a></li>
+
+            </ul>
+            <br>
+            <hr id="hr1">
+            <table id="box_tb">
+
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 갤러리 제목 </a></th>
+                </tr>
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 갤러리 제목 </a></th>
+                </tr>
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 갤러리 제목 </a></th>
+                </tr>
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 갤러리 제목 </a></th>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="box4">
+            <ul >
+                <li id="box_list"><a href="#">시간표</a></li>
+
+            </ul>
+            <br>
+            <hr id="hr1">
+            <table id="box_tb">
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 1학년 시간표 </a></th>
+
+                </tr>
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 2학년 시간표 </a></th>
+
+                </tr>
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 3학년 시간표 </a></th>
+
+                </tr>
+                <tr>
+                    <th id="box_th_g"><a href="#"class=""> 4학년 시간표 </a></th>
+
+                </tr>
+
+            </table>
+
+        </div>
+    </th:block>
+    </body>
+</html>

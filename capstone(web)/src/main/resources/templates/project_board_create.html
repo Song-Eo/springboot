@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+  <title>글쓰기</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+<div class="text_user">
+  <h2> 프로젝트 글쓰기</h2><br><br>
+  <form th:action="@{/board/create/3/project}" th:object="${projectBoardForm}" method="post">
+    <Label> 프로젝트 유형 :
+      <select name="field" th:field="*{field}">
+        <option value="영상">영상</option>
+        <option value="디자인">디자인</option>
+        <option value="코딩">코딩</option>
+      </select><br><br>
+      <Label> 제목 : &nbsp; <input id="title" type="text" style="border:solid 0.1px" name="subject" th:field="*{subject}" max-width:410px ></Label><br><br>
+      <label>내용</label><br><br>
+      <textarea id=""  rows ="10" cols="50"wrap ="virtual" placeholder="내용을 입력 하시오." name="content" th:field="*{content}"></textarea>
+      <input type="submit" value="작성하기">
+      <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+  </form>
+</div>
+</th:block>
+
+
+
+
+</body>
+</html>

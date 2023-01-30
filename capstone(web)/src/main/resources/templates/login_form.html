@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title >로그인 창</title>
+  <style>
+    .error{
+      color: red;
+    }
+        .login_1{
+            top: 25%;
+            position:fixed;
+            z-index: 1;
+            width: 430px;
+            height: 410px;
+            left: 750px ;
+        }
+        form{
+            top: 25%;
+            position: fixed;
+            z-index: 2;
+            width: 320px;
+            height: 160px;
+            left: 800px;
+            text-align:center;
+            margin-top: 125px;
+            background-color: white;
+        }
+        input:hover{background-color: aliceblue;}
+        input{border-radius: 5px; border: solid 0.8px gray;width: 250px;height: 28px; font-size: 15px;}
+        input[type="submit"]:active{background-color:rgb(30, 126, 223);}
+        input[type="submit"]{background-color: rgb(23, 97, 172);color: white;}
+       </style>
+</head>
+<body>
+  <div class="login_1"> <img src="/image/img_1.png" alt="사진을 불러오지 못함."></div>
+  <form th:action="@{/user/login}" method="post">
+    <br>
+    <input type="text" id="username" name="username" class="form-control" placeholder="   Use ID">
+    <br><br>
+    <input type="password" id="password" name="password" class="form-control" placeholder="   Password">
+    <br><br>
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <div th:if="${param.error}">
+      <div class="error">
+        사용자ID 또는 비밀번호를 확인해 주세요.
+      </div>
+    </div>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+  </form>
+</body>
+</html>

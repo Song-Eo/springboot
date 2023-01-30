@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:max-width="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org>">
+    <head>
+        <title>글 작성</title>
+    </head>
+    
+            
+    <body>
+
+
+    <div class="text_user">
+      <h2> 커뮤니티 글쓰기</h2><br><br>
+      <form th:action="@{/board/create/0}" th:object="${boardForm}">
+          <div role="alert" th:if="${#fields.hasAnyErrors()}">
+              <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+          </div>
+          <Label> 제목 : &nbsp; <input id="title" type="text" value=""style="border:solid 0.1px"max-width:410px ></Label><br><br>
+          <Label>아이디: <input id="user_id" type="text" value=""style="border:solid 0.1px"max-width:400px></Label><br><br>
+          <label>내용</label><br><br>
+          <textarea id=""  rows ="10" cols="50"wrap ="virtual" placeholder="내용을 입력 하시오."></textarea>
+        </form>
+  </div>
+      
+     
+     
+     
+   
+    </div>
+    
+   
+    <div class="foot">
+      <br>
+      <p >이용약관 | 개인정보 처리방침 |@DING_GUL<br>디지털 콘텐츠 학과</p>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="text_user">
+    <h2>글 작성</h2><br><br>
+    <form th:action="@{|/board/create/${type}|}" th:object="${boardForm}" method="post">
+        <div role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+        <div>
+            <label>제목</label>
+            <input id="title" name="subject" th:field="*{subject}">
+        </div><br><br>
+
+        <div>
+            <label>내용</label><br><br>
+            <textarea id="content" name="content" th:field="*{content}"  rows ="10" cols="50"wrap ="virtual" placeholder="내용을 입력 하시오."></textarea>
+        </div>
+        <input type="submit" value="작성완료">
+        <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+    </form>
+    </div>
+</th:block>
+
+
+
+</body>
+</html>
